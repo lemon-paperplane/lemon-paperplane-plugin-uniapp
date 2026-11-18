@@ -1,0 +1,180 @@
+{
+  "id": "uniapp",
+  "name": "%plugin.name%",
+  "version": "0.1.0",
+  "vendor": "Lemon Paperplane",
+  "description": "%plugin.description%",
+  "icon": "icons/uniapp.svg",
+  "license": "MIT",
+  "category": "framework",
+  "engines": {
+    "paperplane": ">=0.1.0 <0.2.0"
+  },
+  "protocol": 1,
+  "executable": "bin/paperplane-plugin-uniapp",
+  "dependencies": [
+    {
+      "id": "nodejs",
+      "optional": true
+    }
+  ],
+  "activation": {
+    "files": [
+      "pages.json"
+    ],
+    "facets": [
+      "nodejs"
+    ]
+  },
+  "contributes": {
+    "languages": [
+      {"id": "uniapp-vue", "name": "%lang.nvue%", "extensions": [".nvue", ".uvue"], "module": "editor/lang-vue.js", "blockComment": ["<!--", "-->"]},
+      {"id": "uniapp-json", "name": "%lang.uniJson%", "filenames": ["pages.json", "manifest.json", "theme.json", "uni_modules.config.json"], "module": "editor/lang-jsonc.js", "lineComment": "//", "blockComment": ["/*", "*/"], "priority": 10},
+      {"id": "uts", "name": "UTS", "extensions": [".uts"], "module": "editor/lang-uts.js", "lineComment": "//", "blockComment": ["/*", "*/"]}
+    ],
+    "facets": [
+      {
+        "id": "uniapp",
+        "name": "uni-app",
+        "icon": "icons/uniapp.svg",
+        "category": "framework",
+        "priority": 90
+      },
+      {
+        "id": "hbuilderx",
+        "name": "HBuilderX",
+        "icon": "icons/uniapp.svg",
+        "category": "buildSystem",
+        "priority": 40
+      }
+    ],
+    "runConfigurationTypes": [
+      {
+        "id": "hbuilderx",
+        "name": "%runType.hbuilderx%",
+        "icon": "icons/uniapp.svg",
+        "facets": [
+          "hbuilderx"
+        ],
+        "options": [
+          {
+            "key": "platform",
+            "title": "%opt.platform%",
+            "type": "select",
+            "default": "web",
+            "required": true,
+            "options": [
+              {
+                "value": "web",
+                "label": "%opt.platform.web%"
+              },
+              {
+                "value": "mp-weixin",
+                "label": "%platform.mp-weixin%"
+              }
+            ]
+          },
+          {
+            "key": "browser",
+            "title": "%opt.browser%",
+            "type": "select",
+            "default": "Chrome",
+            "advanced": true,
+            "info": "%opt.browser.info%",
+            "options": [
+              {
+                "value": "Chrome",
+                "label": "Chrome"
+              },
+              {
+                "value": "Safari",
+                "label": "Safari"
+              },
+              {
+                "value": "Firefox",
+                "label": "Firefox"
+              },
+              {
+                "value": "Edge",
+                "label": "Edge"
+              },
+              {
+                "value": "Built",
+                "label": "Built"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "open-wechat-devtools",
+        "title": "%action.openWechat%",
+        "icon": "icons/wechat.svg",
+        "facets": [
+          "uniapp"
+        ],
+        "group": "open",
+        "locations": [
+          "project.toolbar",
+          "run.toolbar",
+          "project.menu"
+        ]
+      },
+      {
+        "id": "open-hbuilderx",
+        "title": "%action.openHBuilderX%",
+        "icon": "icons/uniapp.svg",
+        "facets": [
+          "uniapp"
+        ],
+        "group": "open",
+        "locations": [
+          "project.menu",
+          "card.menu"
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "key": "hbuilderxPath",
+        "title": "%setting.hbuilderxPath%",
+        "type": "path",
+        "info": "%setting.hbuilderxPath.info%"
+      },
+      {
+        "key": "wechatDevtoolsPath",
+        "title": "%setting.wechatDevtoolsPath%",
+        "type": "path",
+        "info": "%setting.wechatDevtoolsPath.info%"
+      }
+    ],
+    "urlPatterns": [
+      {
+        "hint": "Local:",
+        "pattern": "Local:\\s+(https?://[^\\s'\\\")\\]]+)",
+        "ready": true,
+        "facets": [
+          "hbuilderx"
+        ]
+      }
+    ],
+    "readyPatterns": [
+      {
+        "hint": "Build complete. Watching for changes",
+        "pattern": "Build complete\\. Watching for changes",
+        "facets": [
+          "hbuilderx"
+        ]
+      },
+      {
+        "hint": "编译成功",
+        "pattern": "编译成功",
+        "facets": [
+          "hbuilderx"
+        ]
+      }
+    ]
+  }
+}
